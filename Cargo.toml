@@ -1,0 +1,27 @@
+[package]
+name = "sample_client"
+version = "0.1.0"
+edition = "2021"
+license-file = "LICENSE"
+description = "Sample client for the Triton gRPC Geyser service"
+repository = "https://github.com/mrgnlabs/sample-triton-grpc-geyser-client"
+readme = "README.md"
+keywords = ["solana", "transaction", "geyser", "indexing", "grpc", "protobuf"]
+
+[dependencies]
+# Async deps
+tokio = { version = "1.21", features = ["full"] }
+futures = "0.3.25"
+futures-util = "0.3.25"
+# Protobuf/gRPC deps
+prost = "0.11.3"
+tonic = { version = "0.8", features = ["tls", "tls-roots"] }
+# Application deps
+log = "0.4.17"
+env_logger = "0.9.3"
+bs58 = "0.4.0"
+pyth-sdk-solana = { git = "https://github.com/pyth-network/pyth-sdk-rs.git", rev = "47f8bca37b8a440233b4d93c41772603b61b515c" }
+solana-sdk = "1.14.7"
+
+[build-dependencies]
+tonic-build = "0.8"
