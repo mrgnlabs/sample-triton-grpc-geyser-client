@@ -16,6 +16,7 @@ futures-util = "0.3.25"
 # Protobuf/gRPC deps
 prost = "0.11.3"
 tonic = { version = "0.8", features = ["tls", "tls-roots"] }
+itertools = "0.10.5"
 # Application deps
 log = "0.4.17"
 env_logger = "0.9.3"
@@ -25,3 +26,4 @@ solana-sdk = "1.14.7"
 
 [build-dependencies]
 tonic-build = "0.8"
+quote = "1.0"

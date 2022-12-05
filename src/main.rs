@@ -8,7 +8,7 @@ use protos::geyser::{
     SubscribeRequestFilterAccounts, SubscribeRequestFilterBlocks, SubscribeRequestFilterSlots,
     SubscribeRequestFilterTransactions,
 };
-use solana_sdk::pubkey::Pubkey;
+use solana_sdk::{pubkey::Pubkey, transaction::VersionedTransaction};
 use std::collections::HashMap;
 use tonic::{
     codegen::InterceptedService,
@@ -97,11 +97,9 @@ async fn main() {
         if let Some(update) = received.update_oneof {
             match update {
                 UpdateOneof::Transaction(update) => {
-                    info!(
-                        "New tx: {:?} (slot: {})",
-                        bs58::encode(update.transaction.unwrap().signature).into_string(),
-                        update.slot
-                    );
+                    let transaction: VersionedTransaction =
+                        update.transaction.unwrap().transaction.unwrap().into();
+                    info!("New tx: {:?}", transaction);
                 }
                 UpdateOneof::Account(update) => {
                     let account_info = update.account.unwrap();
